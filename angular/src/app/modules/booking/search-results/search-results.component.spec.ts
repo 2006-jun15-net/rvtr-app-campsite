@@ -1,13 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SearchResultsComponent } from './search-results.component';
-import { compileComponentFromMetadata } from '@angular/compiler';
-import { Lodging } from 'src/app/data/lodging.model';
 
 describe('SearchResultsComponent', () => {
   let component: SearchResultsComponent;
   let fixture: ComponentFixture<SearchResultsComponent>;
-  const lodgings: Lodging[] = [
+  const lodgings = [
     {
       id: '',
       location: {
