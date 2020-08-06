@@ -40,6 +40,9 @@ export class RentalComponent implements OnInit {
    */
   constructor(private lodgingService: LodgingService) { }
 
+  /**
+   * initializes loadLodgings function
+   */
   ngOnInit(): void {
     this.loadLodgings();
   }
@@ -60,11 +63,16 @@ export class RentalComponent implements OnInit {
 
   /**
    * sets the rentals property to the lodging's rentals property
+   * and count the available rooms
    */
   public SetRentals(): void {
     this.rentals = this.lodgings[0].rentals;
     this.CountAvailableRooms();
   }
+
+  /**
+   * Counts the available rooms based on the room type.
+   */
 
   private CountAvailableRooms(): void {
     this.rentals.forEach(element => {
