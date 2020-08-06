@@ -21,4 +21,17 @@ $shaow-card: 0 5px 10px 0 $shadow-color;
 .card {
   -webkit-box-shadow: $shadow-card;
   box-shadow: $shadow-card;
+  max-width: 100%;
+  margin-top: 20px;
+}
+
+.is-4 {
+  color: #00aa91;
+}
+
+.is-2 {
+  color: rgb(136, 136, 136);
+}
+.subtitle {
+  color: rgb(116, 116, 116);
 }
