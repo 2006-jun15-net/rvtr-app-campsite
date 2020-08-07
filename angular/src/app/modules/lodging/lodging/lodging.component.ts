@@ -12,6 +12,7 @@ export class LodgingComponent implements OnInit {
 
   lodging: Lodging | null = null;
   idString: string | null = null;
+  status: Boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,6 +36,7 @@ export class LodgingComponent implements OnInit {
       this.lodgingService.get(this.idString).toPromise()
       .then(data => this.lodging = data[0])
       .catch(error => this.handleError(error));
+      this.status = true;
     }
   }
 

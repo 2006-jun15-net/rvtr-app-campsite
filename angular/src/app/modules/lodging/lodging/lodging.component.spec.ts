@@ -30,7 +30,7 @@ describe('LodgingComponent', () => {
       name: 'test',
       rentals: [],
       reviews: [],
-      bathrooms: []
+      bathrooms: 1,
     };
 
   beforeEach(async(() => {
