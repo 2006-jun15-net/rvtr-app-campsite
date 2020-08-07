@@ -95,6 +95,7 @@ export class AccountComponent implements OnInit {
   }
   public update(payload: any) {
     this.validateManifest(payload) ? console.log(JSON.stringify(payload)) : null;
+    this.accountService.put(payload as Account).subscribe();
   }
   private validateManifest(payload: any) {
     if (payload && payload.Address !== undefined && payload.profiles !== undefined) return true;
