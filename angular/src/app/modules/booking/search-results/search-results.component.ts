@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Lodging } from 'src/app/data/lodging.model';
-import { Stay } from 'src/app/data/stay.model';
+import { Booking } from 'src/app/data/booking.model';
+import { BookingService } from '../../../services/booking/booking.service'
+import { Rental } from 'src/app/data/rental.model';
 
 @Component({
   selector: 'uic-search-results',
@@ -10,8 +12,9 @@ import { Stay } from 'src/app/data/stay.model';
 export class SearchResultsComponent implements OnInit {
   @Input() lodgings: Lodging[] | null;
   query = 'test query';
+  reservation: Booking;
 
-  constructor() {}
+  constructor(private bookingService: BookingService) {}
 
   ngOnInit(): void {}
 
@@ -31,6 +34,23 @@ export class SearchResultsComponent implements OnInit {
     return stars;
   }
 
-  makeReservation(){
+  makeReservation(lodging: Lodging, rental: Rental){
+    this.reservation={
+      id:'1',
+      lodgingId: lodging.id,
+      guests: [],
+      accountId: '1',
+      rentals: [],
+      stay: {
+        id: '',
+        dateCreated: new Date(Date.now()),
+        dateModified: new Date(Date.now()),
+        checkIn: new Date(Date.now()) ,
+        checkOut: new Date(Date.now())
+      },
+      status: rental.status
+    }
+    console.log(this.reservation);
+    this.bookingService.post(this.reservation);
   }
 }
