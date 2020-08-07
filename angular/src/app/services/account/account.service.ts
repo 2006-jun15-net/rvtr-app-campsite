@@ -57,7 +57,6 @@ export class AccountService {
    * @param account Account
    */
   put(account: Account): Observable<Account> {
-    debugger;
     return this.apiUrl$.pipe(concatMap((url) => this.http.put<Account>(url, account)));
   }
 }

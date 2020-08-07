@@ -21,17 +21,4 @@ export class ProfileComponent implements OnInit {
     });
   }
   constructor(private editingservice: EditingService) {}
-  /* ngOnChanges(changes: SimpleChanges) {
-    for (const propName in changes) {
-      if (changes.hasOwnProperty(propName)) {
-        const change = changes[propName];
-        switch (propName) {
-          case 'profiles': {
-            debugger;
-            this.profileEdited.emit();
-          }
-        }
-      }
-    }
-  } */
 }
