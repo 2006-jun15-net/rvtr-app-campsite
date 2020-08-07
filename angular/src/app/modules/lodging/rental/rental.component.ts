@@ -32,6 +32,8 @@ export class RentalComponent implements OnInit {
   familyRoomCount = 0;
   tripleRoomCount = 0;
   doubleRoomCount = 0;
+  errorMessage: string;
+  isLoaded: boolean = false;
 
   /**
    * @param lodgingService
@@ -53,7 +55,10 @@ export class RentalComponent implements OnInit {
       .get()
       .toPromise()
       .then((data) => (this.lodgings = data))
-      .then(() => this.SetRentals())
+      .then(() => {
+        this.SetRentals();
+        this.isLoaded = true;
+      })
       .catch((error) => this.handleError(error));
   }
 
@@ -90,13 +95,12 @@ export class RentalComponent implements OnInit {
    * @param error
    * Method handles error and converts the status code to string.
    */
-  private handleError(error: HttpErrorResponse): void {
+  public handleError(error: HttpErrorResponse): void {
     console.log(error.status);
-    let message: string;
     if (error.status === 0) {
-      message = 'Unable to connect to server';
+      this.errorMessage = 'Unable to connect to server';
     } else {
-      message = error.status.toString();
+      this.errorMessage = error.status.toString();
     }
   }
 }

@@ -23,5 +23,4 @@ export interface Lodging {
   bathrooms: number;
   rentals: Rental[];
   reviews: Review[];
-  bathrooms: Bathroom[];
 }
