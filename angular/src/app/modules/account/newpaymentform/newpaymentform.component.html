@@ -20,14 +20,34 @@
                     placeholder="ie. Amex"
                     formControlName="Bank"
                   />
+                  <div
+                    *ngIf="Bank.invalid && (Bank.touched || Bank.dirty)"
+                    class="alert alert-danger"
+                  >
+                    <div *ngIf="Bank.errors.required" class="lengthError">Bank is required</div>
+                  </div>
                   <label for="ccnum">Credit card number</label>
                   <input
                     type="text"
                     id="ccnum"
-                    name="cardnumber"
+                    class="form-control"
                     placeholder="1111-2222-3333-4444"
                     formControlName="CCNumber"
+                    required
+                    maxlength="16"
                   />
+                  <div
+                    *ngIf="CCNumber.invalid && (CCNumber.dirty || CCNumber.touched)"
+                    class="alert alert-danger"
+                  >
+                    <div *ngIf="CCNumber!.errors.required" class="lengthError">
+                      Credit card number is required
+                    </div>
+                    <div *ngIf="CCNumber!.errors.minlength" class="lengthError">
+                      Credit Card must be 16 characters
+                    </div>
+                  </div>
+
                   <label for="expyear">Exp Date</label>
                   <input
                     type="text"
