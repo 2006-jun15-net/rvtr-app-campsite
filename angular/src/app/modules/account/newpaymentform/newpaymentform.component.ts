@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Payment } from 'src/app/data/payment.model';
+import { Payment } from '../../../data/payment.model';
 
 @Component({
   selector: 'uic-newpaymentform',
@@ -10,9 +10,10 @@ import { Payment } from 'src/app/data/payment.model';
   styleUrls: ['./newpaymentform.component.scss'],
 })
 export class NewpaymentformComponent implements OnInit {
-  showMore = false;
+  showModal = false;
 
   @Output() newPayment: EventEmitter<Payment> = new EventEmitter<Payment>();
+
   PaymentForm = new FormGroup({
     Bank: new FormControl('', [Validators.required, Validators.minLength(1)]),
     CCNumber: new FormControl('', [
@@ -35,8 +36,8 @@ export class NewpaymentformComponent implements OnInit {
 
   constructor() {}
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-    let payload = {
+    this.showModal = !this.showModal;
+    const payload = {
       cardExpirationDate: this.PaymentForm.value.ExpDate,
       cardName: this.PaymentForm.value.Bank,
       cardNumber: this.PaymentForm.value.CCNumber,

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { Profile } from '../../../data/profile.model';
 import { EditingService } from '../editingservice.service';
 
@@ -8,7 +8,6 @@ import { EditingService } from '../editingservice.service';
 })
 export class ProfileComponent implements OnInit {
   @Input() profiles: Profile[];
-  @Output('ngModelChange') profileEdited = new EventEmitter();
 
   edited() {
     this.editingservice.update({ profiles: this.profiles });
@@ -17,8 +16,8 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.editingservice.subject().subscribe({
       next: (v) =>
-        v == 'assemble' ? this.editingservice.update({ profiles: this.profiles }) : null,
+        v === 'assemble' ? this.editingservice.update({ profiles: this.profiles }) : null,
     });
   }
-  constructor(private editingservice: EditingService) {}
+  constructor(private readonly editingservice: EditingService) {}
 }

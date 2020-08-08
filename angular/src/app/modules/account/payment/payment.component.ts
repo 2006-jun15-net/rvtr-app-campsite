@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { Payment } from '../../../data/payment.model';
 import { EditingService } from '../editingservice.service';
 
@@ -18,18 +18,5 @@ export class PaymentComponent implements OnInit {
     this.payments.push(newCard);
     console.log(JSON.stringify(newCard));
     this.editingService.update(newCard);
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    for (const propName in changes) {
-      if (changes.hasOwnProperty(propName)) {
-        const change = changes[propName];
-        switch (propName) {
-          case 'payments': {
-            this.paymentsEdited.emit();
-          }
-        }
-      }
-    }
   }
 }
