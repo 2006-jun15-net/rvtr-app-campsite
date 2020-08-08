@@ -1,5 +1,18 @@
 $lightGray: #c8c8c8;
 
+::placeholder {
+  color: lightslategray;
+}
+.notValid1 {
+  color: red;
+}
+.notValid2 {
+  color: red;
+}
+.notValid3 {
+  color: red;
+}
+
 .cell {
   border: 2px solid transparent;
   padding: 11px 20px;
@@ -22,6 +35,7 @@ $lightGray: #c8c8c8;
 .input {
   width: 9em;
   text-align: center;
+  color: black;
 }
 
 .swing-in-left-bck {

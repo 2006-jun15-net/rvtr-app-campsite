@@ -1,5 +1,52 @@
-<span *ngIf='!editMode' (click)='editMode=true' class='cell swing-in-left-bck'>
-  {{ data }}
-</span>
-<input class="input swing-in-left-bck" [value]='data' *ngIf='editMode' attr.data='data' type='text'
-  (focusout)="onFocusOut($event)">
+<div (click)='editMode=true'>
+
+<ng-content *ngIf="!editMode" select="*"></ng-content>
+ <form *ngIf='editMode' #thisForm="ngForm" novalidate> 
+<!-- <form *ngIf='editMode' [formGroup]="Form" > -->
+  <input class="input swing-in-left-bck"  ngModel name="userInput" [value]='data' attr.data="data" 
+  type='string' (keydown.enter)="onFocusOut($event)" required minlength="2" pattern="\d{4}-?\d{4}-?\d{4}-?\d{4}" #userInput="ngModel" placeholder={{data}}/>
+  
+  <!-- <uic-show-errors [control]="userInput"></uic-show-errors> -->
+  <p class="notValid1" *ngIf="userInput.errors?.minlength">not valid length</p>
+  <p class="notValid2"*ngIf="userInput.errors?.required">required</p>
+  <p class="notValid3"*ngIf="userInput.errors?.pattern">need 12</p>
+  <p class="notValid3"*ngIf="userInput.errors?.forbiddenName">can't use that name</p>
+
+  
+</form> 
+ 
+
+</div> 
+
+
+
+
+
+
+<!-- <div (click)='editMode=true'>
+
+  <ng-content *ngIf="!editMode" select="*"></ng-content>
+  <form *ngIf='editMode' #thisForm="ngForm" novalidate>
+    <uic-show-errors [validations]="{required:'First Name required', minlength: ''}">
+      <input inputRef class="input swing-in-left-bck" name="userInput" ngModel [value]='data' attr.data="data" 
+    type='text' (keydown.enter)="onFocusOut($event)" #userInput="ngModel" placeholder={{data}}/>
+    </uic-show-errors> -->
+    
+    
+    <!-- <uic-show-errors [control]="userInput"></uic-show-errors> -->
+    <!-- <p class="notValid1" *ngIf="userInput.errors?.minlength">not valid length</p>
+    <p class="notValid2"*ngIf="userInput.errors?.required">required</p>
+    <p class="notValid3"*ngIf="userInput.errors?.pattern">need letters</p> -->
+  
+    
+  <!-- </form>
+  
+  
+  </div> -->
+
+
+
+
+
+
+

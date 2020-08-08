@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Profile } from '../../../data/profile.model';
 
 @Component({
@@ -6,6 +6,8 @@ import { Profile } from '../../../data/profile.model';
   templateUrl: './profile.component.html',
 })
 export class ProfileComponent implements OnInit {
+  // @ViewChild('userInput') userInput: any;
+
   @Input() profiles: Profile[];
 
   constructor() {}

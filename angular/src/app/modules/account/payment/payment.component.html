@@ -3,24 +3,40 @@
     <div class="level-item has-text-light">
       <div>
         <p class="heading">bank</p>
-        <uic-editable [data]='payment.cardName'></uic-editable>
-        <p class="title has-text-light is-6">{{ payment.cardName }}</p>
+        
+        <p class="title has-text-light is-6">
+          <form #paymentForm="ngForm">
+            <uic-editable [(data)]='payment.cardName' appForbiddenName="bob" >
+              <!-- <input class="input swing-in-left-bck" ngModel name="paymentInput" 
+              type='string'  appForbiddenName="fred" #paymentInput="ngModel" />
+              {{ payment.cardName }}
+              <p *ngIf="paymentInput.errors?.forbiddenName">can't use fred</p> -->
+              {{ payment.cardName }}
+            </uic-editable>
+
+          </form>
+          
+          <!-- [isMandatory]="false" [fred] ="false" -->
+          
+        <!-- </p> -->
       </div>
     </div>
 
     <div class="level-item has-text-light">
       <div>
         <p class="heading">number</p>
-        <uic-editable [data]='payment.cardNumber'></uic-editable>
-        <p class="title has-text-light is-6">{{ payment.cardNumber }}</p>
+        <!-- <uic-editable [(data)]='payment.cardNumber' 
+        name="validate" ngModel #validate="ngModel" type="text" pattern="[0-9]{4}" required>{{ payment.cardNumber }}</uic-editable>
+        <p *ngIf="validate.errors?.pattern">need 4 numbers</p> -->
+        <p class="title has-text-light is-6"></p>
       </div>
     </div>
 
     <div class="level-item has-text-light">
       <div>
         <p class="heading">expiry</p>
-        <!---<uic-editable [data]='payment.cardExpirationDate'></uic-editable>--->
-        <p class="title has-text-light is-6">{{ payment.cardExpirationDate | date: 'MM/yy' }}</p>
+        <uic-editable [(data)]='payment.cardExpirationDate' >{{ payment.cardExpirationDate | date: 'MM/yy' }}</uic-editable>
+        <p class="title has-text-light is-6"></p>
       </div>
     </div>
   </div>

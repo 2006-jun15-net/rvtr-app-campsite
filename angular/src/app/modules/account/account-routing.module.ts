@@ -8,7 +8,9 @@ import { PaymentComponent } from './payment/payment.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AccountReviewComponent } from './account-review/account-review.component';
 import { EditableComponent } from './editable/editable.component';
-import { FormsModule } from '@angular/forms';
+//import { ShowErrorsComponent } from './show-errors/show-errors.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputRefDirective } from './input-ref.directive';
 const routes: Routes = [{ component: AccountComponent, path: '' }];
 
 @NgModule({
@@ -20,8 +22,10 @@ const routes: Routes = [{ component: AccountComponent, path: '' }];
     ProfileComponent,
     AccountReviewComponent,
     EditableComponent,
+    //ShowErrorsComponent,
+    InputRefDirective,
   ],
   exports: [RouterModule],
-  imports: [CommonModule, RouterModule.forChild(routes), FormsModule],
+  imports: [CommonModule, RouterModule.forChild(routes), FormsModule, ReactiveFormsModule],
 })
 export class AccountRoutingModule {}
