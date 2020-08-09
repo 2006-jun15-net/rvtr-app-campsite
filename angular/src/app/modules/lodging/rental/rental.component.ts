@@ -4,7 +4,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LodgingService } from 'src/app/services/lodging/lodging.service';
 import { Lodging } from 'src/app/data/lodging.model';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Rental } from 'src/app/data/rental.model';
 
 /**
@@ -32,8 +31,7 @@ export class RentalComponent implements OnInit {
   familyRoomCount = 0;
   tripleRoomCount = 0;
   doubleRoomCount = 0;
-  errorMessage: string;
-  isLoaded: boolean = false;
+  isLoaded = false;
 
   /**
    * @param lodgingService
@@ -58,8 +56,7 @@ export class RentalComponent implements OnInit {
       .then(() => {
         this.SetRentals();
         this.isLoaded = true;
-      })
-      .catch((error) => this.handleError(error));
+      });
   }
 
   /**
@@ -91,16 +88,4 @@ export class RentalComponent implements OnInit {
     }
   }
 
-  /**
-   * @param error
-   * Method handles error and converts the status code to string.
-   */
-  public handleError(error: HttpErrorResponse): void {
-    console.log(error.status);
-    if (error.status === 0) {
-      this.errorMessage = 'Unable to connect to server';
-    } else {
-      this.errorMessage = error.status.toString();
-    }
-  }
 }

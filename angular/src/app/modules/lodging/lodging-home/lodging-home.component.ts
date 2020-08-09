@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LodgingService } from 'src/app/services/lodging/lodging.service';
 import { Lodging } from 'src/app/data/lodging.model';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'uic-lodging-home',
@@ -13,7 +12,6 @@ export class LodgingHomeComponent implements OnInit {
    * fields usied in this component
    */
   lodgings: Lodging[] | null = null;
-  errorMessage: string;
 
   /**
    * represents lodging-home component's constructor
@@ -27,23 +25,8 @@ export class LodgingHomeComponent implements OnInit {
    */
   ngOnInit(): void {
     this.lodgingService.get().subscribe(
-      (data) => (this.lodgings = data),
-      (error) => this.handleError(error)
+      (data) => (this.lodgings = data)
     );
   }
 
-  /**
-   * handles errors occured into execution of
-   * any functions if this function is called
-   *
-   * @param error error message
-   */
-  public handleError(error: HttpErrorResponse): void {
-    console.log(error.status);
-    if (error.status === 0) {
-      this.errorMessage = 'Unable to connect to server';
-    } else {
-      this.errorMessage = error.status.toString();
-    }
-  }
 }

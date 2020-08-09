@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LodgingService } from 'src/app/services/lodging/lodging.service';
 import { Lodging } from 'src/app/data/lodging.model';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'uic-lodging',
@@ -11,8 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class LodgingComponent implements OnInit {
   lodging: Lodging | null = null;
   idString: string | null = null;
-  isLoaded: boolean = false;
-  errorMessage: string;
+  isLoaded = false;
 
   constructor(private route: ActivatedRoute, private lodgingService: LodgingService) {}
 
@@ -28,18 +26,9 @@ export class LodgingComponent implements OnInit {
     console.log(this.idString);
     if (this.idString){
       this.lodgingService.get(this.idString).toPromise()
-      .then(data => this.lodging = data[0])
-      .catch(error => this.handleError(error));
+      .then(data => this.lodging = data[0]);
       this.isLoaded = true;
     }
   }
 
-  public handleError(error: HttpErrorResponse): void {
-    console.log(error.status);
-    if (error.status === 0) {
-      this.errorMessage = 'Unable to connect to server';
-    } else {
-      this.errorMessage = error.status.toString();
-    }
-  }
 }
