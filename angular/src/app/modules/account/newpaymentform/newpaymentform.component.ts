@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { Payment } from '../../../data/payment.model';
 
 @Component({
@@ -15,13 +15,17 @@ export class NewpaymentformComponent implements OnInit {
   @Output() newPayment: EventEmitter<Payment> = new EventEmitter<Payment>();
 
   PaymentForm = new FormGroup({
-    Bank: new FormControl('', [Validators.required, Validators.minLength(1)]),
-    CCNumber: new FormControl('', [
+    CCNumber: new FormControl('', [Validators.required]),
+    ExpDate: new FormControl('', [
       Validators.required,
-      Validators.minLength(16),
-      Validators.max(16),
+      Validators.minLength(5),
+      Validators.maxLength(5),
     ]),
-    ExpDate: new FormControl(''),
+    SecurityNumber: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(3),
+    ]),
   });
 
   get Bank() {
@@ -33,7 +37,9 @@ export class NewpaymentformComponent implements OnInit {
   get ExpDate() {
     return this.PaymentForm.get('ExpDate') as FormControl;
   }
-
+  get SecurityNumber() {
+    return this.PaymentForm.get('SecurityNumber') as FormControl;
+  }
   constructor() {}
   onSubmit() {
     this.showModal = !this.showModal;

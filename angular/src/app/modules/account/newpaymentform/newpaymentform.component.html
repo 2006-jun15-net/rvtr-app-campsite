@@ -9,43 +9,35 @@
             <div class="container is-fluid">
               <div class="row">
                 <div class="col-50">
-                  <label class="label" for="cname">Bank</label>
-                  <input
-                    type="text"
-                    id="cname"
-                    name="cardname"
-                    placeholder="ie. Amex"
-                    formControlName="Bank"
-                    class="input is-medium"
-                  />
-
                   <label for="ccnum">Credit card number</label>
-                  <div class="is-full column">
-                    <input
-                      type="text"
-                      id="ccnum"
-                      name="cardnumber"
-                      class="input is-medium"
-                      placeholder="1111-2222-3333-4444"
-                      formControlName="CCNumber"
-                      pattern="/\d{4}-?\d{4}-?\d{4}-?\d{4}/"
-                    />
-                    <div
-                      *ngIf="CCNumber.invalid && (CCNumber.touched || CCNumber.dirty)"
-                      class="icon has-text-danger"
-                    >
-                      <i class="fas fa-ban" title="Please enter valid CC info"></i>
-                    </div>
+                  <div class="level is-flex">
+                    <input type="text" id="ccnum" name="cardnumber" class="input is-medium level-item"
+                      placeholder="1111-2222-3333-4444" formControlName="CCNumber"
+                      pattern="\d{4}-?\d{4}-?\d{4}-?\d{4}" />
+                    <span class="level-item">
+                      <i *ngIf="CCNumber.invalid && (CCNumber.touched || CCNumber.dirty)"
+                        class="level-item fas fa-ban has-text-danger" title="Please enter valid CC info"></i>
+                    </span>
                   </div>
-
                   <label for="expyear">Exp Date</label>
-                  <input
-                    type="text"
-                    id="expyear"
-                    name="expyear"
-                    placeholder="2018"
-                    formControlName="ExpDate"
-                  />
+                  <div class="level is-flex">
+                    <input type="text" id="expyear" name="expyear" class="input is-medium level-item"
+                      placeholder="MM/YY" formControlName="ExpDate" pattern="^(0[1-9]|1[0-2])\/?(2[0-9])$" />
+                    <span class="level-item">
+                      <i *ngIf="ExpDate.invalid && (ExpDate.touched || ExpDate.dirty)"
+                        class="level-item fas fa-ban has-text-danger" title="Please enter valid CC info: MM/YY"></i>
+                    </span>
+                  </div>
+                  <label for="expyear">Security Number</label>
+                  <div class="level is-flex">
+                    <input type="number" id="secnumber" name="secnumber" class="input is-medium level-item"
+                      placeholder="ex: 111" formControlName="SecurityNumber" pattern="^([0-9]{3})$" />
+                    <span class="level-item">
+                      <i *ngIf="SecurityNumber.invalid && (SecurityNumber.touched || SecurityNumber.dirty)"
+                        class="level-item fas fa-ban has-text-danger"
+                        title="Please enter valid CC Securty number: 111"></i>
+                    </span>
+                  </div>
                 </div>
               </div>
 
@@ -55,11 +47,7 @@
             </div>
           </div>
 
-          <button
-            class="modal-close is-large level-right"
-            aria-label="close"
-            (click)="showModal = !showModal"
-          ></button>
+          <button class="modal-close is-large level-right" aria-label="close" (click)="showModal = !showModal"></button>
         </div>
       </div>
     </div>

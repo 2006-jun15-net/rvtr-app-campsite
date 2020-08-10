@@ -8,6 +8,7 @@ $label-color:white;
 .lengthError {
   color: red;
 }
+
 .row {
   display: -ms-flexbox;
   /* IE10 */
@@ -42,15 +43,6 @@ $label-color:white;
   padding: 0 16px;
 }
 
-
-
-input[type='text'] {
-  width: 100%;
-  margin-bottom: 20px;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
 
 label {
   margin-bottom: 10px;
