@@ -10,8 +10,8 @@ import { BookingService } from 'src/app/services/booking/booking.service';
 })
 export class SearchResultsComponent implements OnInit {
   @Input() lodgings: Lodging[] | null;
+  @Input() searchQuery: String;
   reservation: Booking;
-  query = 'test query';
 
   constructor(private readonly bookingService: BookingService) {}
 

@@ -18,6 +18,7 @@ export class SearchBarComponent implements OnInit {
 
   @Output() searchResults = new EventEmitter<Lodging[]>();
   @Output() isSearched = new EventEmitter<boolean>();
+  @Output() searchQuery = new EventEmitter<string>();
 
   constructor(
     private readonly bookingService: BookingService,
@@ -38,6 +39,7 @@ export class SearchBarComponent implements OnInit {
 
     await this.searchByAll(checkIn, checkOut, city, occupancy);
     this.isSearched.emit(true);
+    this.searchQuery.emit(city);
   }
 
   private async getLodgingRentals(): Promise<Rental[]> {

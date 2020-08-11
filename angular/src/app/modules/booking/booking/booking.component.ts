@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Lodging } from 'src/app/data/lodging.model';
 import { LodgingService } from 'src/app/services/lodging/lodging.service';
@@ -11,6 +11,7 @@ import { LodgingService } from 'src/app/services/lodging/lodging.service';
 export class BookingComponent implements OnInit {
   lodgings$: Observable<Lodging[]>;
   isSearched = false;
+  searchQuery: String;
 
   constructor(private readonly lodgingService: LodgingService) {}
 
