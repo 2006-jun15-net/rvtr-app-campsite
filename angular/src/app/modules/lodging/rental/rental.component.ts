@@ -64,7 +64,7 @@ export class RentalComponent implements OnInit, OnChanges {
         if (rental.status === 'available') {
           const count = this.availabilityCount.get(rental.type);
           if (count) {
-            this.availabilityCount.set(rental.type, count + 1);
+            this.availabilityCount.set(rental.type, count);
           }
         }
       }
