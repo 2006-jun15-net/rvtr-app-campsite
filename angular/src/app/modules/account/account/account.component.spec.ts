@@ -70,4 +70,38 @@ describe('AccountComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should update the account', () => {
+    const account: Account = {
+      id: '',
+      address: {
+        id: '',
+        city: '',
+        country: '',
+        postalCode: '',
+        stateProvince: '',
+        street: '',
+      },
+      payments: [],
+      profiles: [],
+    };
+    account.address = {
+      id: '1',
+      city: 'Auburn',
+      country: 'usa',
+      postalCode: '13201',
+      stateProvince: 'NY',
+      street: '357 N Hoopes Ave',
+    };
+    accountServiceStub.put(account);
+
+    expect(account.address).toEqual({
+      id: '1',
+      city: 'Auburn',
+      country: 'usa',
+      postalCode: '13201',
+      stateProvince: 'NY',
+      street: '357 N Hoopes Ave',
+    });
+  });
 });
